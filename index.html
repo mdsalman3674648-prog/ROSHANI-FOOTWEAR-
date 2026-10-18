@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROSHANI FOOTWEAR</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fff8f0;
+  color: #333;
+}
+header {
+  background: #e91e63;
+  color: white;
+  text-align: center;
+  padding: 25px 10px;
+}
+header h1 {
+  margin: 0;
+}
+header p {
+  margin-bottom: 0;
+}
+h2 {
+  text-align: center;
+  color: #e91e63;
+}
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  padding: 15px;
+}
+.product {
+  background: white;
+  width: 140px;
+  padding: 15px;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #ddd;
+}
+.product .emoji {
+  font-size: 60px;
+}
+.price {
+  font-size: 22px;
+  color: #e91e63;
+  font-weight: bold;
+}
+button {
+  background: #25D366;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  padding: 10px;
+  font-size: 15px;
+  cursor: pointer;
+}
+footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 20px 10px;
+  margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>👡 ROSHANI FOOTWEAR 👡</h1>
+  <p>लड़कियों और छोटे बच्चों की सुंदर चप्पलें</p>
+</header>
+
+<h2>हमारे प्रोडक्ट</h2>
+
+<div class="products">
+
+  <div class="product">
+    <div class="emoji">👡</div>
+    <h3>लड़कियों की चप्पल</h3>
+    <p>सुंदर और आरामदायक</p>
+    <div class="price">₹220</div>
+    <br>
+    <button onclick="order('लड़कियों की चप्पल',220)">
+      ऑर्डर करें
+    </button>
+  </div>
+
+  <div class="product">
+    <div class="emoji">🩴</div>
+    <h3>बच्चों की चप्पल</h3>
+    <p>छोटे बच्चों के लिए</p>
+    <div class="price">₹250</div>
+    <br>
+    <button onclick="order('छोटे बच्चों की चप्पल',250)">
+      ऑर्डर करें
+    </button>
+  </div>
+
+</div>
+
+<footer>
+  <h3>ROSHANI FOOTWEAR</h3>
+  <p>आपका स्वागत है!</p>
+  <p>WhatsApp से ऑर्डर करें</p>
+</footer>
+
+<script>
+function order(product, price) {
+  var phone = "919905251849";
+  var message = "नमस्ते ROSHANI FOOTWEAR, मुझे " 
+    + product + " ऑर्डर करनी है। कीमत ₹" + price;
+  var url = "https://wa.me/" + phone 
+    + "?text=" + encodeURIComponent(message);
+  window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>
