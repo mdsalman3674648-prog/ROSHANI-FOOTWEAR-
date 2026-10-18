@@ -1,126 +1,189 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROSHANI FOOTWEAR</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roshani Footwear - रोशानी फुटवियर</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #fff8f0;
-  color: #333;
-}
-header {
-  background: #e91e63;
-  color: white;
-  text-align: center;
-  padding: 25px 10px;
-}
-header h1 {
-  margin: 0;
-}
-header p {
-  margin-bottom: 0;
-}
-h2 {
-  text-align: center;
-  color: #e91e63;
-}
-.products {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  padding: 15px;
-}
-.product {
-  background: white;
-  width: 140px;
-  padding: 15px;
-  text-align: center;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px #ddd;
-}
-.product .emoji {
-  font-size: 60px;
-}
-.price {
-  font-size: 22px;
-  color: #e91e63;
-  font-weight: bold;
-}
-button {
-  background: #25D366;
-  color: white;
-  border: none;
-  border-radius: 7px;
-  padding: 10px;
-  font-size: 15px;
-  cursor: pointer;
-}
-footer {
-  background: #333;
-  color: white;
-  text-align: center;
-  padding: 20px 10px;
-  margin-top: 20px;
-}
-</style>
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* हेडर / बैनर */
+        header {
+            background: linear-gradient(135deg, #e91e63, #ff4081);
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 26px;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* सर्च और फ़िल्टर */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 20px 0 15px;
+            color: #d81b60;
+            font-size: 22px;
+        }
+
+        /* प्रोडक्ट ग्रिड */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        /* प्रोडक्ट कार्ड */
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            text-align: center;
+            padding: 15px;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            font-size: 18px;
+            color: #222;
+            margin-bottom: 5px;
+        }
+
+        .card p {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #e91e63;
+            margin-bottom: 12px;
+        }
+
+        /* बटन */
+        .order-btn {
+            display: inline-block;
+            width: 100%;
+            background-color: #25d366;
+            color: white;
+            text-decoration: none;
+            padding: 10px 0;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 15px;
+            transition: background 0.3s;
+        }
+
+        .order-btn:hover {
+            background-color: #1ebd56;
+        }
+
+        /* फुटर */
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            font-size: 14px;
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-  <h1>👡 ROSHANI FOOTWEAR 👡</h1>
-  <p>लड़कियों और छोटे बच्चों की सुंदर चप्पलें</p>
-</header>
+    <header>
+        <h1>ROSHANI FOOTWEAR</h1>
+        <p>लड़कियों और बच्चों की चप्पलों की सबसे बेहतरीन दुकान</p>
+    </header>
 
-<h2>हमारे प्रोडक्ट</h2>
+    <div class="container">
+        <h2 class="section-title">हमारे लोकप्रिय प्रोडक्ट्स</h2>
 
-<div class="products">
+        <div class="product-grid">
 
-  <div class="product">
-    <div class="emoji">👡</div>
-    <h3>लड़कियों की चप्पल</h3>
-    <p>सुंदर और आरामदायक</p>
-    <div class="price">₹220</div>
-    <br>
-    <button onclick="order('लड़कियों की चप्पल',220)">
-      ऑर्डर करें
-    </button>
-  </div>
+            <!-- प्रोडक्ट 1 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/200x180?text=Fancy+Slipper" alt="फैंसी हील चप्पल">
+                <h3>लड़कियों की फैंसी हील</h3>
+                <p>पार्टी और शादी के लिए सुंदर डिज़ाइन</p>
+                <div class="price">₹350</div>
+                <a href="https://wa.me/91XXXXXXXXXX?text=नमस्ते,%20मुझे%20'लड़कियों%20की%20फैंसी%20हील'%20(₹350)%20ऑर्डर%20करना%20है।" class="order-btn" target="_blank">WhatsApp पर ऑर्डर करें</a>
+            </div>
 
-  <div class="product">
-    <div class="emoji">🩴</div>
-    <h3>बच्चों की चप्पल</h3>
-    <p>छोटे बच्चों के लिए</p>
-    <div class="price">₹250</div>
-    <br>
-    <button onclick="order('छोटे बच्चों की चप्पल',250)">
-      ऑर्डर करें
-    </button>
-  </div>
+            <!-- प्रोडक्ट 2 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/200x180?text=Daily+Use+Slipper" alt="डेली वेयर चप्पल">
+                <h3>लड़कियों की डेली वेयर चप्पल</h3>
+                <p>रोज़ पहनने के लिए आरामदायक और टिकाऊ</p>
+                <div class="price">₹180</div>
+                <a href="https://wa.me/91XXXXXXXXXX?text=नमस्ते,%20मुझे%20'लड़कियों%20की%20डेली%20वेयर%20चप्पल'%20(₹180)%20ऑर्डर%20करना%20है।" class="order-btn" target="_blank">WhatsApp पर ऑर्डर करें</a>
+            </div>
 
-</div>
+            <!-- प्रोडक्ट 3 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/200x180?text=Kids+Sandal" alt="बच्चों की कार्टून चप्पल">
+                <h3>बच्चों की कार्टून चप्पल</h3>
+                <p>छोटे बच्चों के लिए सॉफ्ट और रंग-बिरंगी</p>
+                <div class="price">₹220</div>
+                <a href="https://wa.me/91XXXXXXXXXX?text=नमस्ते,%20मुझे%20'बच्चों%20की%20कार्टून%20चप्पल'%20(₹220)%20ऑर्डर%20करना%20है।" class="order-btn" target="_blank">WhatsApp पर ऑर्डर करें</a>
+            </div>
 
-<footer>
-  <h3>ROSHANI FOOTWEAR</h3>
-  <p>आपका स्वागत है!</p>
-  <p>WhatsApp से ऑर्डर करें</p>
-</footer>
+            <!-- प्रोडक्ट 4 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/200x180?text=Kids+Fancy+Sandal" alt="बच्चों का फैंसी सैंडल">
+                <h3>बच्चों का फैंसी सैंडल</h3>
+                <p>मजबूत ग्रिप और खूबसूरत लुक</p>
+                <div class="price">₹280</div>
+                <a href="https://wa.me/91XXXXXXXXXX?text=नमस्ते,%20मुझे%20'बच्चों%20का%20फैंसी%20सैंडल'%20(₹280)%20ऑर्डर%20करना%20है।" class="order-btn" target="_blank">WhatsApp पर ऑर्डर करें</a>
+            </div>
 
-<script>
-function order(product, price) {
-  var phone = "919905251849";
-  var message = "नमस्ते ROSHANI FOOTWEAR, मुझे " 
-    + product + " ऑर्डर करनी है। कीमत ₹" + price;
-  var url = "https://wa.me/" + phone 
-    + "?text=" + encodeURIComponent(message);
-  window.open(url, "_blank");
-}
-</script>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>ROSHANI FOOTWEAR</strong></p>
+        <p>संपर्क करें: +919905251849 | पता: आपकी दुकान का पता</p>
+    </footer>
 
 </body>
 </html>
+
