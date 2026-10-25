@@ -1,160 +1,535 @@
+```html
 <!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roshani Footwear - रोशनी फुटवियर</title>
+    <title>ROSHANI FOOTWEAR - रोशनी फुटवेयर</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font (Inter & Hind) -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            pink: '#db2777',
+                            darkpink: '#be185d',
+                            lightpink: '#fbcfe8',
+                            whatsapp: '#16a34a',
+                            whatsappdark: '#15803d'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Hind', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
         body {
-            background-color: #f8f9fa;
-            color: #333;
+            font-family: 'Hind', 'Inter', sans-serif;
+            background-color: #f8fafc;
         }
-        header {
-            background: linear-gradient(135deg, #e91e63, #ff4081);
-            color: white;
-            text-align: center;
-            padding: 25px 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        .modal-bg {
+            background-color: rgba(0, 0, 0, 0.75);
         }
-        header h1 {
-            font-size: 26px;
-            margin-bottom: 5px;
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
         }
-        header p {
-            font-size: 14px;
-            opacity: 0.9;
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
         }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 15px;
+        ::-webkit-scrollbar-thumb {
+            background: #db2777;
+            border-radius: 4px;
         }
-        .section-title {
-            text-align: center;
-            margin: 20px 0 15px;
-            color: #d81b60;
-            font-size: 22px;
-        }
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
-        .card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            text-align: center;
-            padding: 15px;
-            transition: transform 0.2s;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        .card img {
-            width: 100%;
-            height: 180px;
-            object-fit: contain;
-            border-radius: 8px;
-        }
-        .card h3 {
-            margin: 10px 0 5px;
-            font-size: 18px;
-        }
-        .card p {
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 10px;
-        }
-        .price {
-            font-size: 18px;
-            font-weight: bold;
-            color: #e91e63;
-            margin-bottom: 12px;
-        }
-        .order-btn {
-            display: inline-block;
-            background-color: #25d366;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
-        }
-        footer {
-            background-color: #222;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 30px;
-            font-size: 14px;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #be185d;
         }
     </style>
 </head>
-<body>
+<body class="bg-gray-100 min-h-screen flex flex-col justify-between text-gray-800">
 
-    <header>
-        <h1>ROSHANI FOOTWEAR</h1>
-        <p>लड़कियों और बच्चों की चप्पलों की सबसे बेहतरीन दुकान</p>
+    <!-- Top Announcement Bar -->
+    <div class="bg-pink-900 text-white text-xs sm:text-sm py-1.5 px-4 text-center font-medium">
+        🎉 विशेष ऑफर! थोक एवं खुदरा बिक्री | पूरे भारत में होम डिलीवरी उपलब्ध!
+    </div>
+
+    <!-- Main Header -->
+    <header class="bg-brand-pink text-white shadow-md sticky top-0 z-30">
+        <div class="max-w-7xl mx-auto px-4 py-4 sm:py-6 text-center relative">
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-wider uppercase drop-shadow-sm">ROSHANI FOOTWEAR</h1>
+            <p class="text-sm sm:text-lg mt-1 font-medium text-pink-100">लड़कियों और बच्चों की चप्पलों की सबसे बेहतरीन दुकान</p>
+
+            <!-- Admin Toggle Button -->
+            <button onclick="toggleAdminModal()" class="mt-3 sm:absolute sm:right-4 sm:top-6 bg-white text-brand-darkpink hover:bg-pink-50 text-xs sm:text-sm px-3 py-1.5 rounded-lg font-bold shadow-sm transition-all flex items-center justify-center gap-1.5 mx-auto sm:mx-0">
+                <i class="fa-solid fa-gear"></i> सामान / फोटो बदलें (एडमिन)
+            </button>
+        </div>
+
+        <!-- Category Nav & Search Bar -->
+        <div class="bg-brand-darkpink px-4 py-3 border-t border-pink-500">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-3 items-center justify-between">
+                <!-- Search Input -->
+                <div class="relative w-full md:w-80">
+                    <input type="text" id="searchInput" oninput="filterProducts()" placeholder="चप्पल या सैंडल खोजें..." class="w-full pl-9 pr-4 py-2 text-sm text-gray-800 bg-white rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300 shadow-inner">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-gray-400 text-sm"></i>
+                </div>
+
+                <!-- Category Pills -->
+                <div class="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-1 md:pb-0 text-xs sm:text-sm whitespace-nowrap scrollbar-none">
+                    <button onclick="setCategory('all')" class="cat-btn active bg-white text-brand-darkpink font-bold px-3 py-1.5 rounded-full transition-colors" data-cat="all">सब देखें (<span id="totalCount">0</span>)</button>
+                    <button onclick="setCategory('लड़कियों की चप्पल')" class="cat-btn bg-pink-800 text-white font-medium px-3 py-1.5 rounded-full hover:bg-pink-700 transition-colors" data-cat="लड़कियों की चप्पल">लड़कियों की चप्पल</button>
+                    <button onclick="setCategory('बच्चों के सैंडल')" class="cat-btn bg-pink-800 text-white font-medium px-3 py-1.5 rounded-full hover:bg-pink-700 transition-colors" data-cat="बच्चों के सैंडल">बच्चों के सैंडल</button>
+                    <button onclick="setCategory('फैंसी हील')" class="cat-btn bg-pink-800 text-white font-medium px-3 py-1.5 rounded-full hover:bg-pink-700 transition-colors" data-cat="फैंसी हील">फैंसी हील</button>
+                    <button onclick="setCategory('डेली वेयर')" class="cat-btn bg-pink-800 text-white font-medium px-3 py-1.5 rounded-full hover:bg-pink-700 transition-colors" data-cat="डेली वेयर">डेली वेयर</button>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <div class="container">
-        <h2 class="section-title">हमारे लोकप्रिय प्रोडक्ट्स</h2>
+    <!-- Main Content Body -->
+    <main class="max-w-7xl mx-auto px-3 sm:px-6 py-6 flex-grow w-full">
+        <!-- Subheading -->
+        <div class="text-center mb-6">
+            <h2 class="text-xl sm:text-2xl font-bold text-gray-800 border-b-2 border-brand-pink inline-block pb-1">हमारे लोकप्रिय प्रोडक्ट्स</h2>
+            <p class="text-xs sm:text-sm text-gray-500 mt-1">पसंद की चप्पल चुनकर सीधे WhatsApp पर ऑर्डर करें</p>
+        </div>
 
-        <div class="product-grid">
-
-            <!-- प्रोडक्ट 1 -->
-            <div class="card">
-                <img src="file_000000002014821192626d69b50c25fc.png" alt="Prime Leather Slipper">
-                <h3>Prime Leather Slipper</h3>
-                <p>पार्टी और शादी के लिए सुंदर डिज़ाइन</p>
-                <div class="price">₹350</div>
-                <a href="https://wa.me/919905251849?text=नमस्ते,%20मुझे%20Prime%20Leather%20Slipper%20खरीदना%20है।" class="order-btn">WhatsApp पर ऑर्डर करें</a>
+        <!-- Dynamic Product Grid -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+            <!-- Loading Spinner -->
+            <div class="col-span-full text-center py-12">
+                <i class="fa-solid fa-spinner fa-spin text-3xl text-brand-pink"></i>
+                <p class="mt-2 text-gray-500 font-medium">चप्पलों की लिस्ट लोड हो रही है...</p>
             </div>
+        </div>
 
-            <!-- प्रोडक्ट 2 -->
-            <div class="card">
-                <img src="https://via.placeholder.com/200x180?text=Daily+Use+Slipper" alt="डेली वेयर चप्पल">
-                <h3>लड़कियों की डेली वेयर चप्पल</h3>
-                <p>रोज़ पहनने के लिए आरामदायक और टिकाऊ</p>
-                <div class="price">₹180</div>
-                <a href="https://wa.me/919905251849?text=नमस्ते,%20मुझे%20डेली%20वेयर%20चप्पल%20खरीदना%20है।" class="order-btn">WhatsApp पर ऑर्डर करें</a>
+        <!-- Empty Results Message -->
+        <div id="noResults" class="hidden text-center py-12 bg-white rounded-xl shadow-sm border border-gray-200 mt-4">
+            <i class="fa-solid fa-shoe-prints text-4xl text-gray-300 mb-2"></i>
+            <h3 class="text-lg font-bold text-gray-700">कोई चप्पल नहीं मिली!</h3>
+            <p class="text-sm text-gray-500 mt-1">कृपया सर्च शब्द बदलें या 'सब देखें' पर क्लिक करें।</p>
+        </div>
+    </main>
+
+    <!-- Footer Bar -->
+    <footer class="bg-gray-900 text-white text-center py-4 border-t-4 border-brand-pink mt-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <h3 class="font-bold text-lg tracking-wide text-brand-lightpink">ROSHANI FOOTWEAR</h3>
+            <p class="text-xs sm:text-sm mt-1 text-gray-300">
+                संपर्क करें: <a href="tel:+919905251849" class="text-white hover:underline font-bold">+91 9905251849</a> | पता: आपकी दुकान का पता, मुख्य बाज़ार
+            </p>
+            <p class="text-xs text-gray-400 mt-2">© 2026 ROSHANI FOOTWEAR - All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Full Image Viewer Modal -->
+    <div id="imageModal" class="fixed inset-0 modal-bg z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl overflow-hidden max-w-xl w-full shadow-2xl relative flex flex-col max-h-[90vh]">
+            <button onclick="closeImageModal()" class="absolute top-3 right-3 bg-gray-900 text-white w-8 h-8 rounded-full flex items-center justify-center z-10 hover:bg-red-600 transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="p-4 bg-gray-50 border-b flex items-center justify-between">
+                <h3 id="modalTitle" class="font-bold text-gray-800 text-lg">उत्पाद की फोटो</h3>
             </div>
-
-            <!-- प्रोडक्ट 3 -->
-            <div class="card">
-                <img src="https://via.placeholder.com/200x180?text=Kids+Sandal" alt="बच्चों की कार्टून चप्पल">
-                <h3>बच्चों की कार्टून चप्पल</h3>
-                <p>छोटे बच्चों के लिए सॉफ्ट और रंग-बिरंगी</p>
-                <div class="price">₹220</div>
-                <a href="https://wa.me/919905251849?text=नमस्ते,%20मुझे%20कार्टून%20चप्पल%20खरीदना%20है।" class="order-btn">WhatsApp पर ऑर्डर करें</a>
+            <div class="p-4 flex-grow overflow-auto flex items-center justify-center bg-gray-100">
+                <img id="modalMainImg" src="" alt="Slipper Large View" class="max-h-[60vh] object-contain rounded-lg">
             </div>
-
-            <!-- प्रोडक्ट 4 -->
-            <div class="card">
-                <img src="https://via.placeholder.com/200x180?text=Kids+Fancy+Sandal" alt="बच्चों का फैंसी सैंडल">
-                <h3>बच्चों का फैंसी सैंडल</h3>
-                <p>मजबूत ग्रिप और खूबसूरत लुक</p>
-                <div class="price">₹280</div>
-                <a href="https://wa.me/919905251849?text=नमस्ते,%20मुझे%20फैंसी%20सैंडल%20खरीदना%20है।" class="order-btn">WhatsApp पर ऑर्डर करें</a>
+            <div id="modalThumbnails" class="p-3 bg-white border-t flex gap-2 overflow-x-auto justify-center">
+                <!-- Mini thumbnails inserted via JS -->
             </div>
-
         </div>
     </div>
 
-    <footer>
-        <p><strong>ROSHANI FOOTWEAR</strong></p>
-        <p>संपर्क करें: +919905251849 | पता: आपकी दुकान का पता</p>
-    </footer>
+    <!-- Admin & Customization Drawer/Modal -->
+    <div id="adminModal" class="fixed inset-0 modal-bg z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] flex flex-col overflow-hidden">
+            <!-- Modal Header -->
+            <div class="bg-brand-pink text-white px-5 py-4 flex items-center justify-between">
+                <div>
+                    <h3 class="font-bold text-lg flex items-center gap-2">
+                        <i class="fa-solid fa-sliders"></i> चप्पल एवं प्रोडक्ट मैनेजर (एडमिन)
+                    </h3>
+                    <p class="text-xs text-pink-100">यहाँ आप नई चप्पलें जोड़ सकते हैं या फोटो/रेट बदल सकते हैं।</p>
+                </div>
+                <button onclick="toggleAdminModal()" class="text-white hover:bg-pink-700 w-8 h-8 rounded-full flex items-center justify-center">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
 
+            <!-- Modal Body (Tabs + Content) -->
+            <div class="p-5 overflow-y-auto space-y-6 flex-grow bg-gray-50">
+                <!-- Action Buttons: Batch Generator & Reset -->
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                        <h4 class="font-bold text-sm text-gray-800">100-150 चप्पलों की सूची जनरेट करें:</h4>
+                        <p class="text-xs text-gray-500">यदि आपकी लिस्ट खाली है, तो 120 नमूना उत्पाद एक क्लिक में जोड़ें।</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="loadSample100Products()" class="bg-brand-pink hover:bg-brand-darkpink text-white text-xs font-bold px-4 py-2 rounded-lg shadow transition-colors flex items-center gap-1.5">
+                            <i class="fa-solid fa-plus-circle"></i> +120 नमूना चप्पलें जोड़ें
+                        </button>
+                        <button onclick="clearAllProducts()" class="bg-red-100 hover:bg-red-200 text-red-700 text-xs font-bold px-3 py-2 rounded-lg transition-colors">
+                            <i class="fa-solid fa-trash-can"></i> सब हटाएं
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Add / Edit Form -->
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
+                    <h4 id="formHeading" class="font-bold text-base text-brand-darkpink border-b pb-2 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-square-plus"></i> नई चप्पल जोड़ें
+                    </h4>
+                    <form id="productForm" onsubmit="handleFormSubmit(event)" class="space-y-4 text-xs sm:text-sm">
+                        <input type="hidden" id="editProductId" value="">
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block font-semibold text-gray-700 mb-1">प्रोडक्ट का नाम *</label>
+                                <input type="text" id="pName" required placeholder="जैसे: Prime Leather Slipper" class="w-full border rounded-lg p-2.5 focus:ring-2 focus:ring-brand-pink outline-none">
+                            </div>
+                            <div>
+                                <label class="block font-semibold text-gray-700 mb-1">कीमत (₹) *</label>
+                                <input type="number" id="pPrice" required placeholder="जैसे: 250" class="w-full border rounded-lg p-2.5 focus:ring-2 focus:ring-brand-pink outline-none">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block font-semibold text-gray-700 mb-1">कैटेगरी *</label>
+                                <select id="pCategory" class="w-full border rounded-lg p-2.5 focus:ring-2 focus:ring-brand-pink outline-none bg-white">
+                                    <option value="लड़कियों की चप्पल">लड़कियों की चप्पल</option>
+                                    <option value="बच्चों के सैंडल">बच्चों के सैंडल</option>
+                                    <option value="फैंसी हील">फैंसी हील</option>
+                                    <option value="डेली वेयर">डेली वेयर</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block font-semibold text-gray-700 mb-1">मुख्य फ़ोटो का URL (Image Link) *</label>
+                                <input type="url" id="pMainImg" required placeholder="https://..." class="w-full border rounded-lg p-2.5 focus:ring-2 focus:ring-brand-pink outline-none">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block font-semibold text-gray-700 mb-1">विवरण (Description)</label>
+                            <input type="text" id="pDesc" placeholder="जैसे: पार्टी और शादी के लिए सुंदर डिज़ाइन" class="w-full border rounded-lg p-2.5 focus:ring-2 focus:ring-brand-pink outline-none">
+                        </div>
+
+                        <div>
+                            <label class="block font-semibold text-gray-700 mb-1">अतिरिक्त 4 फ़ोटो लिंक्स (Thumbnails - कॉमा (,) से अलग करें)</label>
+                            <input type="text" id="pThumbnails" placeholder="URL1, URL2, URL3, URL4" class="w-full border rounded-lg p-2.5 focus:ring-2 focus:ring-brand-pink outline-none">
+                            <span class="text-[11px] text-gray-400">कार्ड के बाईं/ऊपरी ग्रिड में दिखाने के लिए 4 अतिरिक्त फ़ोटो लिंक दे सकते हैं।</span>
+                        </div>
+
+                        <div class="flex justify-end gap-3 pt-2">
+                            <button type="button" onclick="resetForm()" class="px-4 py-2 border rounded-lg font-bold text-gray-600 hover:bg-gray-100">रद्द करें</button>
+                            <button type="submit" class="px-6 py-2 bg-brand-pink hover:bg-brand-darkpink text-white rounded-lg font-bold shadow">सेव करें</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Default Sample Images for Slippers & Sandals
+        const sampleSlipperImages = [
+            'https://images.unsplash.com/photo-1603808033176-9d134e6f2c74?auto=format&fit=crop&w=400&q=80',
+            'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=400&q=80',
+            'https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=400&q=80',
+            'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=400&q=80',
+            'https://images.unsplash.com/photo-1621996346565-e3def646d959?auto=format&fit=crop&w=400&q=80',
+            'https://images.unsplash.com/photo-1535043934128-cf0b28d52f95?auto=format&fit=crop&w=400&q=80',
+            'https://images.unsplash.com/photo-1515347619252-60a4bf4fff4f?auto=format&fit=crop&w=400&q=80'
+        ];
+
+        // Store WhatsApp Phone Number
+        const WHATSAPP_NUMBER = "919905251849";
+
+        // Global State
+        let products = [];
+        let currentCategory = 'all';
+
+        // Load Initial Data on Page Load
+        window.onload = function() {
+            const savedData = localStorage.getItem('roshani_products');
+            if (savedData) {
+                try {
+                    products = JSON.parse(savedData);
+                } catch (e) {
+                    console.error("Error loading products", e);
+                    products = [];
+                }
+            }
+            
+            // If no data exists, generate default 120 products automatically
+            if (!products || products.length === 0) {
+                generateInitialSampleData(120);
+            }
+            
+            renderProducts();
+        };
+
+        // Helper to Save Data to LocalStorage
+        function saveProductsToStorage() {
+            localStorage.setItem('roshani_products', JSON.stringify(products));
+            renderProducts();
+        }
+
+        // Generate 100-150 Products Batch
+        function generateInitialSampleData(count = 120) {
+            const categories = ['लड़कियों की चप्पल', 'बच्चों के सैंडल', 'फैंसी हील', 'डेली वेयर'];
+            const names = [
+                'Prime Leather Slipper', 'Daily Use Slipper', 'Kids Sandal', 'Kids Fancy Sandal',
+                'लड़कियों की कैजुअल चप्पल', 'लड़कियों की फ़्लैट्स चप्पल', 'स्टाइलिस्ट हील चप्पल', 'एथनिक चप्पलें',
+                'स्कूल चप्पलें', 'फैंसी वेज चप्पल', 'स्पोर्ट्स स्लाडइर्स', 'बीच चप्पलों'
+            ];
+            const descs = [
+                'पार्टी और शादी के लिए सुंदर डिज़ाइन',
+                'रोज़ पहनने के लिए आरामदायक और टिकाऊ',
+                'छोटे बच्चों के लिए सॉफ्ट और रंग-बिरंगी',
+                'मजबूत ग्रिप और खूबसूरत लुक',
+                'हल्की और शाही फैंसी चप्पल',
+                'नरम और सॉफ्ट सोल'
+            ];
+
+            products = [];
+            for (let i = 1; i <= count; i++) {
+                const cat = categories[(i - 1) % categories.length];
+                const baseName = names[(i - 1) % names.length];
+                const desc = descs[(i - 1) % descs.length];
+                const mainImg = sampleSlipperImages[(i - 1) % sampleSlipperImages.length];
+                const price = 150 + ((i * 15) % 450);
+
+                // Create 4 sub-thumbnails for the grid look
+                const thumbs = [
+                    sampleSlipperImages[i % sampleSlipperImages.length],
+                    sampleSlipperImages[(i + 1) % sampleSlipperImages.length],
+                    sampleSlipperImages[(i + 2) % sampleSlipperImages.length],
+                    sampleSlipperImages[(i + 3) % sampleSlipperImages.length]
+                ];
+
+                products.push({
+                    id: 'PROD_' + Date.now() + '_' + i,
+                    name: `${baseName} - Model #${i}`,
+                    price: price,
+                    category: cat,
+                    description: desc,
+                    mainImg: mainImg,
+                    thumbnails: thumbs
+                });
+            }
+            saveProductsToStorage();
+        }
+
+        // Render Product Grid
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
+            const noResults = document.getElementById('noResults');
+
+            // Filter logic
+            const filtered = products.filter(p => {
+                const matchesCategory = (currentCategory === 'all') || (p.category === currentCategory);
+                const matchesSearch = p.name.toLowerCase().includes(searchVal) || p.description.toLowerCase().includes(searchVal) || p.price.toString().includes(searchVal);
+                return matchesCategory && matchesSearch;
+            });
+
+            document.getElementById('totalCount').innerText = products.length;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                noResults.classList.remove('hidden');
+                return;
+            }
+
+            noResults.classList.add('hidden');
+            grid.innerHTML = filtered.map(product => {
+                // Generate 4 mini preview thumbnails (like screenshot grid)
+                const miniGridHtml = (product.thumbnails && product.thumbnails.length >= 4) ? `
+                    <div class="grid grid-cols-2 gap-1 w-24 h-24 sm:w-28 sm:h-28 flex-shrink-0 cursor-pointer overflow-hidden rounded-lg border border-gray-200" onclick="openImageModal('${product.id}')">
+                        <img src="${product.thumbnails[0]}" onerror="this.src='https://placehold.co/100x100?text=Slipper'" class="w-full h-full object-cover">
+                        <img src="${product.thumbnails[1]}" onerror="this.src='https://placehold.co/100x100?text=Slipper'" class="w-full h-full object-cover">
+                        <img src="${product.thumbnails[2]}" onerror="this.src='https://placehold.co/100x100?text=Slipper'" class="w-full h-full object-cover">
+                        <img src="${product.thumbnails[3]}" onerror="this.src='https://placehold.co/100x100?text=Slipper'" class="w-full h-full object-cover">
+                    </div>
+                ` : `
+                    <div class="w-24 h-24 sm:w-28 sm:h-28 flex-shrink-0 cursor-pointer overflow-hidden rounded-lg border border-gray-200" onclick="openImageModal('${product.id}')">
+                        <img src="${product.mainImg}" onerror="this.src='https://placehold.co/150x150?text=Slipper'" class="w-full h-full object-cover">
+                    </div>
+                `;
+
+                // WhatsApp order text
+                const waMessage = encodeURIComponent(`नमस्ते ROSHANI FOOTWEAR, मुझे यह चप्पल ऑर्डर करनी है:\n\n*प्रोडक्ट:* ${product.name}\n*कीमत:* ₹${product.price}\n*विवरण:* ${product.description}`);
+                const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${waMessage}`;
+
+                return `
+                    <div class="bg-white rounded-2xl shadow-sm hover:shadow-md border border-gray-200 p-3.5 flex flex-col justify-between transition-all">
+                        <div>
+                            <!-- Top Photo Section (Mini 4-Grid + Main Image) -->
+                            <div class="flex gap-2 items-center mb-3 bg-gray-50 p-2 rounded-xl border border-gray-100">
+                                ${miniGridHtml}
+                                <div class="flex-grow h-24 sm:h-28 rounded-lg overflow-hidden cursor-pointer bg-white border border-gray-100 flex items-center justify-center" onclick="openImageModal('${product.id}')">
+                                    <img src="${product.mainImg}" onerror="this.src='https://placehold.co/200x200?text=Roshani+Footwear'" alt="${product.name}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                                </div>
+                            </div>
+
+                            <!-- Product Info -->
+                            <div class="text-center px-1">
+                                <h3 class="font-bold text-gray-900 text-base sm:text-lg leading-tight">${product.name}</h3>
+                                <p class="text-xs text-gray-500 mt-1 line-clamp-2">${product.description || 'सर्वश्रेष्ठ गुणवत्ता और टिकाऊ चप्पल'}</p>
+                                <div class="text-brand-pink font-extrabold text-xl mt-2">₹${product.price}</div>
+                            </div>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="mt-4 space-y-2">
+                            <a href="${waUrl}" target="_blank" class="w-full bg-brand-whatsapp hover:bg-brand-whatsappdark text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-sm transition-colors text-sm">
+                                <i class="fa-brands fa-whatsapp text-lg"></i> WhatsApp पर ऑर्डर करें
+                            </a>
+
+                            <button onclick="editProduct('${product.id}')" class="w-full text-xs text-gray-500 hover:text-brand-pink py-1 font-semibold flex items-center justify-center gap-1">
+                                <i class="fa-solid fa-pen-to-square"></i> इस चप्पल की फोटो / रेट बदलें
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Category Filter Handler
+        function setCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                if (btn.dataset.cat === cat) {
+                    btn.classList.add('bg-white', 'text-brand-darkpink', 'font-bold');
+                    btn.classList.remove('bg-pink-800', 'text-white');
+                } else {
+                    btn.classList.remove('bg-white', 'text-brand-darkpink', 'font-bold');
+                    btn.classList.add('bg-pink-800', 'text-white');
+                }
+            });
+            renderProducts();
+        }
+
+        // Realtime Search Filter
+        function filterProducts() {
+            renderProducts();
+        }
+
+        // Image Modal Handler
+        function openImageModal(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            document.getElementById('modalTitle').innerText = product.name + ` (₹${product.price})`;
+            const mainImg = document.getElementById('modalMainImg');
+            mainImg.src = product.mainImg;
+
+            const thumbsContainer = document.getElementById('modalThumbnails');
+            const allImages = [product.mainImg, ...(product.thumbnails || [])];
+
+            thumbsContainer.innerHTML = allImages.map(url => `
+                <img src="${url}" onclick="document.getElementById('modalMainImg').src='${url}'" class="w-12 h-12 object-cover rounded-md border-2 border-transparent hover:border-brand-pink cursor-pointer transition-all">
+            `).join('');
+
+            document.getElementById('imageModal').classList.remove('hidden');
+        }
+
+        function closeImageModal() {
+            document.getElementById('imageModal').classList.add('hidden');
+        }
+
+        // Admin Modal Handler
+        function toggleAdminModal() {
+            const modal = document.getElementById('adminModal');
+            modal.classList.toggle('hidden');
+        }
+
+        // Add or Update Product
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            const editId = document.getElementById('editProductId').value;
+            const name = document.getElementById('pName').value.trim();
+            const price = parseFloat(document.getElementById('pPrice').value);
+            const category = document.getElementById('pCategory').value;
+            const mainImg = document.getElementById('pMainImg').value.trim();
+            const desc = document.getElementById('pDesc').value.trim();
+            const thumbsRaw = document.getElementById('pThumbnails').value.trim();
+
+            const thumbnails = thumbsRaw ? thumbsRaw.split(',').map(s => s.trim()).filter(s => s.length > 0) : [mainImg, mainImg, mainImg, mainImg];
+
+            if (editId) {
+                // Update existing product
+                const index = products.findIndex(p => p.id === editId);
+                if (index !== -1) {
+                    products[index] = {
+                        ...products[index],
+                        name, price, category, description: desc, mainImg, thumbnails
+                    };
+                }
+            } else {
+                // Create new product
+                const newProduct = {
+                    id: 'PROD_' + Date.now(),
+                    name, price, category, description: desc, mainImg, thumbnails
+                };
+                products.unshift(newProduct);
+            }
+
+            saveProductsToStorage();
+            resetForm();
+            toggleAdminModal();
+        }
+
+        // Edit Product Button Handler
+        function editProduct(id) {
+            const product = products.find(p => p.id === id);
+            if (!product) return;
+
+            document.getElementById('editProductId').value = product.id;
+            document.getElementById('pName').value = product.name;
+            document.getElementById('pPrice').value = product.price;
+            document.getElementById('pCategory').value = product.category;
+            document.getElementById('pMainImg').value = product.mainImg;
+            document.getElementById('pDesc').value = product.description || '';
+            document.getElementById('pThumbnails').value = (product.thumbnails || []).join(', ');
+
+            document.getElementById('formHeading').innerHTML = `<i class="fa-solid fa-pen-to-square"></i> "${product.name}" का विवरण बदलें`;
+            toggleAdminModal();
+        }
+
+        function resetForm() {
+            document.getElementById('productForm').reset();
+            document.getElementById('editProductId').value = '';
+            document.getElementById('formHeading').innerHTML = `<i class="fa-solid fa-square-plus"></i> नई चप्पल जोड़ें`;
+        }
+
+        // Batch Load 120 Sample Items
+        function loadSample100Products() {
+            generateInitialSampleData(120);
+            alert("120 सैंपल चप्पलें सफलता के साथ जोड़ दी गई हैं!");
+        }
+
+        // Clear All Items
+        function clearAllProducts() {
+            products = [];
+            saveProductsToStorage();
+        }
+    </script>
 </body>
 </html>
+```
 
